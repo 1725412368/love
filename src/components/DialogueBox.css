@@ -1,76 +1,67 @@
+/* DialogueBox.css */
 .game-container {
-  /* 建议在这里加上背景图处理逻辑 */
-  background-size: cover;
-  background-position: center;
-  transition: background-image 0.5s ease-in-out;
-}
-
-/* 立绘舞台 */
-.character-stage {
-  flex: 1;
-  display: flex;
-  align-items: flex-end; /* 立绘脚踩对话框顶部 */
-  justify-content: center; /* 默认居中 */
   width: 100%;
   height: 100%;
-  position: relative;
-  pointer-events: none; /* 防止图片挡住对话框的点击事件 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  pointer-events: none; /* 重要：容器本身不阻挡点击 */
 }
 
-/* 不同位置的修饰类 */
-.character-stage.left { justify-content: flex-start; padding-left: 10%; }
-.character-stage.right { justify-content: flex-end; padding-right: 10%; }
+/* 立绘与视频共同舞台 */
+.character-stage {
+  position: absolute;
+  bottom: 120px; /* 避开对话框主体 */
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 5;
+  pointer-events: none; /* 禁止立绘遮挡点击 */
+}
 
-/* 立绘图片本身 */
-.character-standing {
-  max-height: 80vh; /* 别顶到头 */
-  width: auto;
+.character-standing, .interaction-video {
+  max-height: 100%;
+  max-width: 90%;
   object-fit: contain;
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-  /* 加上一点阴影更有立体感 */
-  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+  pointer-events: none;
 }
 
-/* 淡入淡出动画类 */
-.fade-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.fade-out {
-  opacity: 0;
-  transform: translateY(10px); /* 淡出时轻微下沉 */
-}
-
+/* 对话框主体 */
 .dialogue-box {
   width: 90%;
   max-width: 800px;
-  background: rgba(0, 0, 0, 0.8);
-  border: 2px solid #ecf0f1;
-  border-radius: 10px;
+  min-height: 160px;
+  background: rgba(20, 20, 20, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
   padding: 20px;
-  margin-bottom: 30px;
-  color: white;
   position: relative;
+  z-index: 50;
+  pointer-events: auto; /* 恢复对话框的点击功能 */
+  margin-bottom: 10px;
 }
 
 .character-name {
-  position: absolute;
-  top: -20px;
-  left: 20px;
-  background: #e74c3c;
-  padding: 5px 20px;
+  color: #ff6b6b;
+  font-size: 1.2rem;
   font-weight: bold;
-  border-radius: 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ff6b6b;
+  display: inline-block;
 }
 
 .dialogue-text {
-  min-height: 80px;
-  font-size: 18px;
+  color: white;
+  font-size: 1.1rem;
   line-height: 1.6;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
+/* 选项按钮 */
 .options-container {
   display: flex;
   flex-direction: column;
@@ -78,72 +69,29 @@
 }
 
 .option-button {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid #fff;
-  color: white;
+  width: 100%;
   padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s;
-  text-align: left;
+  text-align: center;
+  transition: 0.2s;
 }
 
 .option-button:hover {
-  background: white;
-  color: black;
+  background: #ff6b6b;
+  border-color: #ff6b6b;
 }
 
-.option-button.is-locked {
-  background: rgba(100, 100, 100, 0.5);
-  color: #888;
-  border-color: #555;
-  cursor: not-allowed;
-  position: relative;
-}
-
-.lock-icon {
-  font-size: 12px;
-  margin-left: 10px;
-  color: #ff4d4d;
-}
-/* 视频立绘样式 */
-.interaction-video {
-  /* 保持与静态立绘相同的高度和比例 */
-  max-height: 80vh; 
-  width: auto;
-  object-fit: contain;
-  /* 关键：如果是透明背景视频（WEBM格式），效果最好；
-     如果是普通MP4，可以用 mask-image 稍微修饰边缘，或者保持原样 */
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
-  border-radius: 20px; /* 如果视频有背景，圆角会柔和一些 */
-}
-
-/* 结束互动按钮 */
-.stop-interaction-btn {
-  position: absolute;
-  top: 100px;
-  right: 20px;
-  background: rgba(0,0,0,0.6);
-  color: white;
-  border: 1px solid white;
-  padding: 5px 15px;
-  cursor: pointer;
-  z-index: 200;
-}
-
-.character-stage {
-  position: absolute;
-  bottom: 0; /* 贴着底部对齐 */
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end; /* 让立绘站在底部 */
-  pointer-events: none; /* 防止立绘遮挡按钮点击 */
-}
-
-.character-standing, .interaction-video {
-  /* 确保立绘不会超过屏幕高度的 85%，给下方的对话框留出视觉空间 */
-  max-height: 85vh; 
-  width: auto;
-  object-fit: contain;
+@media (max-width: 768px) {
+  .dialogue-box {
+    width: 95%;
+    min-height: 140px;
+    padding: 15px;
+  }
+  .character-standing {
+    max-height: 70%; /* 手机端立绘比例缩小 */
+  }
 }

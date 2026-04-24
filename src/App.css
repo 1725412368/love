@@ -1,64 +1,82 @@
-/* 给游戏主容器增加居中约束 */
+/* App.css */
 .App {
   width: 100vw;
   height: 100vh;
+  height: 100svh; /* 适配移动端工具栏 */
   position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center; /* 水平居中 */
-  justify-content: center; /* 垂直居中 */
+  align-items: center;
+  overflow: hidden;
 }
 
-/* 确保对话框也是相对于屏幕中心定位 */
-.dialogue-box {
-  position: fixed; /* 改用 fixed 或 absolute 确保位置固定 */
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%); /* 完美的水平居中 */
-  width: 90%;
-  max-width: 800px;
-  z-index: 50;
-}
-
-/* 互动按钮居中对齐 */
-.interaction-trigger-btn {
+/* 背景图层 */
+.full-bg, .map-bg {
   position: absolute;
-  left: 50%;
-  top: 50%; /* 也可以根据需要调整到对话框上方 */
-  transform: translate(-50%, -50%); /* 屏幕正中心 */
-  /* 如果你想让它在对话框正上方：
-  bottom: 280px;
-  left: 50%;
-  transform: translateX(-50%); 
-  */
-  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
 }
 
+/* 状态栏层级 */
+.status-panel {
+  position: absolute;
+  top: 20px;
+  z-index: 100; /* 放在最前面 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 剧情屏幕容器 */
 .dialogue-screen {
   position: relative;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center; /* 内部所有元素水平居中 */
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-end; /* 元素从底部向上排列 */
+  padding-bottom: 20px;
+  z-index: 10;
 }
 
-/* 确保停止按钮在右上角，不参与中心排列 */
+/* 互动按钮：位于对话框上方 */
+.interaction-trigger-btn {
+  position: absolute;
+  bottom: 280px; /* 位于对话框上方 */
+  z-index: 110;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #ff6b6b, #ff4d4d);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(255, 77, 77, 0.4);
+  cursor: pointer;
+  pointer-events: auto; /* 确保可点击 */
+}
+
 .stop-interaction-btn {
   position: absolute;
   top: 20px;
   right: 20px;
-  z-index: 110;
+  z-index: 200;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
 }
 
-.dialogue-box {
-  position: absolute;
-  bottom: 30px; /* 距离底部保持一点间距 */
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 100;
-  /* 确保对话框本身有固定高度或最大高度，防止文字过多撑开页面 */
-  max-height: 30vh; 
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .interaction-trigger-btn {
+    bottom: 240px;
+    font-size: 14px;
+    padding: 10px 20px;
+  }
 }
