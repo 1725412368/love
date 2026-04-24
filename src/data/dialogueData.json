@@ -1,0 +1,529 @@
+{
+  "lin_library_start": {
+    "name": "林小晚",
+    "text": "（在图书馆的角落里，林小晚正对着一本厚厚的计算机视觉教材发愁）学长？好巧啊，你也是来复习的吗？",
+    "characterImage": {
+      "id": "girl1",
+      "pose": "normal",
+      "position": "center"
+    },
+    "options": [
+      {
+        "label": "细心辅导她功课",
+        "nextId": "lin_study_happy",
+        "impact": { "type": "affection", "value": 10, "target": "girl1" }
+      },
+      {
+        "label": "调侃她没认真听课",
+        "nextId": "lin_tease",
+        "impact": { "type": "mood", "value": -5, "target": "girl1" }
+      }
+    ]
+  },
+  "lin_study_happy": {
+    "name": "林小晚",
+    "text": "原来是这样！被学长一讲我就全明白了。感觉学长讲得比教授还好呢...",
+    "characterImage": {
+      "id": "girl1",
+      "pose": "happy",
+      "position": "center"
+    },
+    "options": [
+      {
+        "label": "（尝试摸摸头）",
+        "nextId": "lin_headpat",
+        "condition": { "type": "affection", "min": 20, "target": "girl1" }
+      },
+      {
+        "label": "谦虚一下，然后离开",
+        "isEnd": true
+      }
+    ]
+  },
+  "lin_library_start_play": {
+    "name": "林小晚",
+    "activeId": "girl1",
+    "text": "学长，要休息一下吗？",
+    "characterImage": {
+      "id": "girl1",
+      "pose": "normal",
+      "position": "center"
+    },
+    "interaction": {
+      "requiredAffection": 50,
+      "type": "video", 
+      "url": "/videos/lin_touch_head.mp4",
+      "label": "摸摸头"
+    },
+    "options": [{
+      "label": "继续辅导",
+      "nextId": "lin_study_happy",
+      "impact": { "type": "affection", "value": 10, "target": "girl1" }
+    }]
+  },
+  "lin_headpat": {
+    "name": "林小晚",
+    "text": "诶...诶？（她的脸瞬间变红了）虽然不讨厌，但这里是图书馆，会被人看到的...",
+    "characterImage": {
+      "id": "girl1",
+      "pose": "shy",
+      "position": "center"
+    },
+    "impact": { "type": "shame", "value": 15, "target": "girl1" },
+    "options": [
+      {
+        "label": "收手并告别",
+        "nextId": "lin_library_start_play"
+      }
+    ]
+  },
+  "su_dance_start": {
+    "name": "苏清雪",
+    "text": "（练习室里，苏清雪正在压腿，汗水顺着脸颊滑落）呼...你盯着我看很久了，有什么事吗？",
+    "characterImage": {
+      "id": "girl2",
+      "pose": "normal",
+      "position": "center"
+    },
+    "options": [
+      {
+        "label": "递上一瓶水",
+        "nextId": "su_water_success",
+        "impact": { "type": "affection", "value": 5, "target": "girl2" }
+      },
+      {
+        "label": "只是路过",
+        "isEnd": true
+      }
+    ]
+  },
+
+
+  "su_water_success": {
+    "name": "苏清雪",
+    "text": "谢谢。看来你还挺细心的，没我想象中那么笨。",
+    "characterImage": {
+      "id": "girl2",
+      "pose": "happy",
+      "position": "center"
+    },
+    "options": [
+      {
+        "label": "继续看她练习",
+        "nextId": "su_watch_shame",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      },
+      {
+        "label": "不去打扰她了",
+        "nextId": "su_water_fail",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      }
+    ]
+  },
+
+  "su_water_fail": {
+    "name": "苏清雪",
+    "text": "（苏清雪一言不发，水就流掉了）",
+    "characterImage": {
+      "id": "girl2",
+      "pose": "normal",
+      "position": "center"
+    },
+    "options": [
+      {
+        "label": "继续看她练习",
+        "nextId": "su_watch_shame"
+      }
+    ]
+  },
+
+
+
+  "su_watch_shame": {
+    "name": "苏清雪",
+    "text": "总觉得你的目光...有点奇怪。这样盯着女孩子的腿看，你是变态吗？",
+    "characterImage": {
+      "id": "girl2",
+      "pose": "shy",
+      "position": "center"
+    },
+    "impact": { "type": "shame", "value": 20, "target": "girl2" },
+    "options": [
+      {
+        "label": "赶紧道歉",
+        "isEnd": true
+      },
+      {
+        "label": "我就是喜欢看你的腿啊",
+        "nextId": "su_watch_tui",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      }
+    ]
+  },
+
+  "su_watch_tui": {
+    "name": "苏清雪",
+    "text": "难道只喜欢看我的腿吗？（苏清雪的脸一下子就红了）",
+    "characterImage": {
+      "id": "girl2",
+      "pose": "shy",
+      "position": "center"
+    },
+    "impact": { "type": "shame", "value": 20, "target": "girl2" },
+    "options": [
+      {
+        "label": "我不喜欢看腿，我喜欢看你的屁股啊！",
+        "nextId": "su_watch_pigu",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      },
+      {
+        "label": "我还喜欢看你的胸啊！",
+        "nextId": "su_watch_xiong",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      }
+    ]
+  },
+
+  "su_watch_pigu": {
+    "name": "苏清雪",
+    "activeId": "girl2",
+    "text": "我的屁股不能看啊··（苏清雪的脸更红了）",
+    "characterImage": {
+      "id": "girl2",
+      "pose": "shy",
+      "position": "center"
+    },
+    "interaction": {
+      "requiredAffection": 0,
+      "type": "video", 
+      "url": "/videos/lin_touch_head.mp4",
+      "label": "摸摸头"
+    },
+    
+    "options": [
+      {
+        "label": "既然你的屁股不能看，那我就只能看你的逼了！",
+        "nextId": "su_watch_b",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      },
+      {
+        "label": "那我还是看你的胸吧！",
+        "nextId": "su_watch_xiong",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      }
+    ]
+  },
+
+
+  "su_watch_xiong": {
+    "name": "苏清雪",
+    "activeId": "girl2",
+    "text": "那我把胸 露出来给你看吧，我的胸大吗？（苏清雪的脸一下子就红了）想摸一摸吗？",
+    "characterImage": {
+      "id": "girl2",
+      "pose": "xiong",
+      "position": "center"
+    },
+    "interaction": {
+      "requiredAffection": 0,
+      "type": "video", 
+      "url": "/videos/louxiong.MOV",
+      "label": "漏胸了哦"
+    },
+    "impact": { "type": "shame", "value": 20, "target": "girl2" },
+    "options": [
+      {
+        "label": "超级喜欢看你的胸啊！你的胸超大的！很想摸一摸啊！",
+        "nextId": "su_watch_moxiong",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      },
+      {
+        "label": "虽然想摸你的胸，但我更喜欢看你的逼啊！",
+        "nextId": "su_watch_b",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      }
+    ]
+  },
+
+  "su_watch_b": {
+    "name": "苏清雪",
+    "activeId": "girl2",
+    "text": "那我就把我的逼露出来给你看吧！（苏清雪的脸红到极点了）",
+    "characterImage": {
+      "id": "girl2",
+      "pose": "xiong",
+      "position": "center"
+    },
+    "interaction": {
+      "requiredAffection": 0,
+      "type": "video", 
+      "url": "/videos/btexie.MOV",
+      "label": "漏逼了哦"
+    },
+    "impact": { "type": "shame", "value": 20, "target": "girl2" },
+    "options": [
+      {
+        "label": "好性感的逼啊！好想摸啊！",
+        "nextId": "su_watch_mob",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      },
+      {
+        "label": "我的寄吧好痒，需要你帮我口交一下啊！",
+        "nextId": "su_watch_eat",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      }
+    ]
+  },
+
+  "su_watch_moxiong": {
+    "name": "苏清雪",
+    "activeId": "girl2",
+    "text": "我的胸软不软啊？",
+    "characterImage": {
+      "id": "girl2",
+      "pose": "xiong",
+      "position": "center"
+    },
+    "interaction": {
+      "requiredAffection": 0,
+      "type": "video", 
+      "url": "/videos/moxiong.MOV",
+      "label": "摸胸"
+    },
+    "impact": { "type": "shame", "value": 20, "target": "girl2" },
+    "options": [
+      {
+        "label": "你的胸好软啊！摸得我寄吧都快硬了！",
+        "nextId": "su_watch_eat",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      },
+      {
+        "label": "好喜欢你的胸啊！要是能摸你的逼就好了！",
+        "nextId": "su_watch_mob",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      }
+    ]
+  },
+
+  "su_watch_mob": {
+    "name": "苏清雪",
+    "activeId": "girl2",
+    "text": "我的逼好不好摸啊？",
+    "characterImage": {
+      "id": "girl2",
+      "pose": "xiong",
+      "position": "center"
+    },
+    "interaction": {
+      "requiredAffection": 0,
+      "type": "video", 
+      "url": "/videos/monai.MOV",
+      "label": "摸逼"
+    },
+    "impact": { "type": "shame", "value": 20, "target": "girl2" },
+    "options": [
+      {
+        "label": "好想把我的寄吧塞进你的逼里啊！",
+        "nextId": "su_watch_charu",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      },
+      {
+        "label": "好喜欢你的逼啊！快把我的寄吧含在嘴里啊！",
+        "nextId": "su_watch_eat",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      }
+    ]
+  },
+
+  "su_watch_eat": {
+    "name": "苏清雪",
+    "activeId": "girl2",
+    "text": "让我尝尝你的寄吧好不好吃啊？（苏清雪的脸红到极点了）",
+    "characterImage": {
+      "id": "girl2",
+      "pose": "xiong",
+      "position": "center"
+    },
+    "interaction": {
+      "requiredAffection": 0,
+      "type": "video", 
+      "url": "/videos/eat.MOV",
+      "label": "吃鸡巴"
+    },
+    "impact": { "type": "shame", "value": 20, "target": "girl2" },
+    "options": [
+      {
+        "label": "太舒服了！我都快射了啊！（射在苏清雪嘴里）！",
+        "isEnd": true
+      },
+      {
+        "label": "我的寄吧好硬啊！我要插入你的逼里了啊！",
+        "nextId": "su_watch_mocha",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      }
+    ]
+  },
+
+  "su_watch_mocha": {
+    "name": "苏清雪",
+    "activeId": "girl2",
+    "text": "你的寄吧想插入我的逼里吗？（苏清雪的逼在我的龟头上摩擦）",
+    "characterImage": {
+      "id": "girl2",
+      "pose": "xiong",
+      "position": "center"
+    },
+    "interaction": {
+      "requiredAffection": 0,
+      "type": "video", 
+      "url": "/videos/bmochaguitou.MOV",
+      "label": "摩擦龟头"
+    },
+    "impact": { "type": "shame", "value": 20, "target": "girl2" },
+    "options": [
+      {
+        "label": "太舒服了！我都快射了啊！（射在苏清雪逼外面了）！",
+        "isEnd": true
+      },
+      {
+        "label": "我要插入你的逼里了啊！我要狠狠地操你啊！",
+        "nextId": "su_watch_charu",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      }
+    ]
+  },
+
+  "su_watch_charu": {
+    "name": "苏清雪",
+    "activeId": "girl2",
+    "text": "啊啊啊啊！你的寄吧进来了。你的寄吧好大啊！插得我好舒服啊！（插到最深处）",
+    "characterImage": {
+      "id": "girl2",
+      "pose": "xiong",
+      "position": "center"
+    },
+    "interaction": {
+      "requiredAffection": 0,
+      "type": "video", 
+      "url": "/videos/jinru.MOV",
+      "label": "插入"
+    },
+    "impact": { "type": "shame", "value": 20, "target": "girl2" },
+    "options": [
+      {
+        "label": "太舒服了！我都快射了啊！（射在苏清雪逼里）！",
+        "nextId": "su_watch_neishe",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      },
+      {
+        "label": "换个姿势插啊！我想看你骑在我身上啊！我最喜欢后入式了啊！",
+        "nextId": "su_watch_houru",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      }
+    ]
+  },
+
+  "su_watch_neishe": {
+    "name": "苏清雪",
+    "activeId": "girl2",
+    "text": "啊啊啊啊！你的寄吧好大啊！插得我好舒服啊！（插到最深处）精液射在我逼里了啊！",
+    "characterImage": {
+      "id": "girl2",
+      "pose": "xiong",
+      "position": "center"
+    },
+    "interaction": {
+      "requiredAffection": 0,
+      "type": "video", 
+      "url": "/videos/shejing.MOV",
+      "label": "射精了哦"
+    },
+    "impact": { "type": "shame", "value": 20, "target": "girl2" },
+    "options": [
+      {
+        "label": "太舒服了！我的精液全部射在你的逼里了啊！我都快射光了啊！",
+        "isEnd": true
+      },
+      {
+        "label": "射光了我的寄吧了啊！还想继续插啊！",
+        "nextId": "su_watch_charu",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      }
+    ]
+  },
+
+
+  "su_watch_houru": {
+    "name": "苏清雪",
+    "activeId": "girl2",
+    "text": "啊啊啊啊！你的寄吧进来了。从后面插进来。插得我的逼好舒服啊！（插到最深处）",
+    "characterImage": {
+      "id": "girl2",
+      "pose": "xiong",
+      "position": "center"
+    },
+    "interaction": {
+      "requiredAffection": 0,
+      "type": "video", 
+      "url": "/videos/charu.MOV",
+      "label": "后入式"
+    },
+    "impact": { "type": "shame", "value": 20, "target": "girl2" },
+    "options": [
+      {
+        "label": "太舒服了！我都快射了啊！（射在苏清雪逼里）！",
+        "nextId": "su_watch_neishe",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      },
+      {
+        "label": "我的寄吧被夹得好舒服啊！还想继续插啊！要把你的逼插烂了啊！",
+        "nextId": "su_watch_houruchoucha",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      }
+    ]
+  },
+
+
+  "su_watch_houruchoucha": {
+    "name": "苏清雪",
+    "activeId": "girl2",
+    "text": "啊啊啊啊！你的寄吧把我的逼插得好舒服啊！还想继续插啊！要把我的逼插烂了啊！（插到最深处）一直插着我的逼啊！",
+    "characterImage": {
+      "id": "girl2",
+      "pose": "xiong",
+      "position": "center"
+    },
+    "interaction": {
+      "requiredAffection": 0,
+      "type": "video", 
+      "url": "/videos/houruchoucha.MOV",
+      "label": "插入"
+    },
+    "impact": { "type": "shame", "value": 20, "target": "girl2" },
+    "options": [
+      {
+        "label": "太舒服了！我都快射了啊！（射在苏清雪逼里）！",
+        "nextId": "su_watch_neishe",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      },
+      {
+        "label": "快要射了啊！还想继续插啊！我的精液要射在你的逼里了啊！射光了我的精液，还想被操吗？",
+        "nextId": "dorm_event_01",
+        "condition": { "type": "affection", "min": 10, "target": "girl2" }
+      }
+    ]
+  },
+
+
+
+  "dorm_event_01": {
+    "name": "内心独白",
+    "text": "他的寄吧把我操得欲罢不能，好喜欢做爱，今天要被操死了。回到宿舍，感觉整个人都放松了下来。明天该去找谁继续操我呢？",
+    "options": [
+      {
+        "label": "休息（回到地图）",
+        "isEnd": true
+      }
+    ]
+  }
+}

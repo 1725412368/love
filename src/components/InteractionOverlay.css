@@ -1,0 +1,30 @@
+.interaction-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.interaction-media {
+  max-width: 90vw;
+  max-height: 90vh;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}

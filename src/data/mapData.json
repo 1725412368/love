@@ -1,0 +1,32 @@
+[
+  {
+    "id": "dormitory",
+    "name": "男生宿舍",
+    "description": "你的狗窝，适合休息恢复体力。",
+    "npcs": [],
+    "npcId": "girl3",
+    "x": "50%",
+    "y": "50%",
+    "entryScene": "dorm_event_01"
+  },
+  {
+    "id": "library",
+    "name": "图书馆",
+    "description": "安静的阅览室，林小晚经常在这里。",
+    "npcs": ["girl1"],
+    "npcId": "girl1",
+    "x": "20%",
+    "y": "30%",
+    "entryScene": "lin_library_start"
+  },
+  {
+    "id": "dance_room",
+    "name": "练习室",
+    "description": "充满汗水与青春的地方，苏清雪在练舞。",
+    "npcs": ["girl2"],
+    "npcId": "girl2",
+    "x": "70%",
+    "y": "50%",
+    "entryScene": "su_dance_start"
+  }
+]
